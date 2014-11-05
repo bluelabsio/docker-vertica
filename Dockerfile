@@ -33,6 +33,10 @@ USER dbadmin
 RUN /opt/vertica/bin/admintools -t create_db -s localhost -d docker -c /home/dbadmin/docker/catalog -D /home/dbadmin/docker/data
 USER root
 
+RUN mkdir /tmp/.python-eggs
+RUN chown -R dbadmin /tmp/.python-eggs
+ENV PYTHON_EGG_CACHE /tmp/.python-eggs
+
 ENV VERTICADATA /home/dbadmin/docker
 VOLUME  /home/dbadmin/docker
 
