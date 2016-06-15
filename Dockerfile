@@ -21,16 +21,16 @@ ENV TZ "US/Eastern"
 RUN groupadd -r verticadba
 RUN useradd -r -m -g verticadba dbadmin
 
-ADD vertica-7.0.2-1.x86_64.RHEL5.rpm /rpms/vertica-7.0.2-1.x86_64.RHEL5.rpm
+ADD vertica-7.2.3-0.x86_64.RHEL6.rpm /rpms/vertica-7.2.3-0.x86_64.RHEL6.rpm
 
-RUN yum install -y /rpms/vertica-7.0.2-1.x86_64.RHEL5.rpm
+RUN yum install -y /rpms/vertica-7.2.3-0.x86_64.RHEL6.rpm
 
 # In theory, someone should make things work without ignoring the errors.
 # But that's in theory, and for now, this seems sufficient.
 RUN /opt/vertica/sbin/install_vertica --license CE --accept-eula --hosts 127.0.0.1 --dba-user-password-disabled --failure-threshold NONE --no-system-configuration
 
 USER dbadmin
-RUN /opt/vertica/bin/admintools -t create_db -s localhost -d docker -c /home/dbadmin/docker/catalog -D /home/dbadmin/docker/data
+RUN /opt/vertica/bin/admintools -t create_db -s localhost --skip-fs-checks -d docker -c /home/dbadmin/docker/catalog -D /home/dbadmin/docker/data
 USER root
 
 RUN mkdir /tmp/.python-eggs
