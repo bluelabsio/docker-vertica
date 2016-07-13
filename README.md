@@ -22,7 +22,7 @@ docker run -P  bluelabs/vertica
 docker run -P -v /path/to/vertica_data:/home/dbadmin/docker bluelabs/vertica
 ```
 
-### Common problems
+## Common problems:
 
 ##### ```/docker-entrypoint.sh: line 15: ulimit: open files: cannot modify limit: Operation not permitted```
 
