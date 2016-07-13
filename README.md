@@ -24,7 +24,7 @@ docker run -P -v /path/to/vertica_data:/home/dbadmin/docker bluelabs/vertica
 
 ### Common problems
 
-## ```/docker-entrypoint.sh: line 15: ulimit: open files: cannot modify limit: Operation not permitted```
+##### ```/docker-entrypoint.sh: line 15: ulimit: open files: cannot modify limit: Operation not permitted```
 
 Databases open and keep open a number of files simultaneously, and often require higher configured limits than most Linux distributions come with by default.
 
