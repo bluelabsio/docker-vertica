@@ -12,10 +12,12 @@ trap "shut_down" SIGKILL SIGTERM SIGHUP SIGINT EXIT
 
 chown -R dbadmin:verticadba "$VERTICADATA"
 
+ulimit -n 32768
+
 if [ -z "$(ls -A "$VERTICADATA")" ]; then
   echo "Creating database"
   gosu dbadmin /opt/vertica/bin/admintools -t drop_db -d docker
-	gosu dbadmin /opt/vertica/bin/admintools -t create_db -s localhost -d docker -c /home/dbadmin/docker/catalog -D /home/dbadmin/docker/data
+  gosu dbadmin /opt/vertica/bin/admintools -t create_db -s localhost -d docker -c /home/dbadmin/docker/catalog -D /home/dbadmin/docker/data
 else
   gosu dbadmin /opt/vertica/bin/admintools -t start_db -d docker -i
 fi

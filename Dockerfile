@@ -21,9 +21,9 @@ ENV TZ "US/Eastern"
 RUN groupadd -r verticadba
 RUN useradd -r -m -g verticadba dbadmin
 
-ADD vertica-7.2.3-0.x86_64.RHEL6.rpm /rpms/vertica-7.2.3-0.x86_64.RHEL6.rpm
+ADD vertica-*.rpm /rpms/vertica.rpm
 
-RUN yum install -y /rpms/vertica-7.2.3-0.x86_64.RHEL6.rpm
+RUN yum install -y /rpms/vertica.rpm
 
 # In theory, someone should make things work without ignoring the errors.
 # But that's in theory, and for now, this seems sufficient.
