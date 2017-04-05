@@ -27,10 +27,10 @@ RUN yum install -y /rpms/vertica.rpm
 
 # In theory, someone should make things work without ignoring the errors.
 # But that's in theory, and for now, this seems sufficient.
-RUN /opt/vertica/sbin/install_vertica --license CE --accept-eula --hosts 127.0.0.1 --dba-user-password-disabled --failure-threshold NONE --no-system-configuration
+RUN /opt/vertica/sbin/install_vertica --license CE --accept-eula --hosts 127.0.0.1 --dba-user-password-disabled --failure-threshold NONE --no-system-configuration --skip-fs-checks
 
 USER dbadmin
-RUN /opt/vertica/bin/admintools -t create_db -s localhost --skip-fs-checks -d docker -c /home/dbadmin/docker/catalog -D /home/dbadmin/docker/data
+RUN /opt/vertica/bin/admintools -t create_db -s localhost --skip-fs-checks -d docker -c /home/dbadmin/docker/catalog -D /home/dbadmin/docker/data 
 USER root
 
 RUN mkdir /tmp/.python-eggs
